@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* *{
+      border: 1px solid #000;
+    } */
+    
+    html,body{
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+
+    #card{
+      width: 880px;
+      height: 600px;
+      position: relative;
+      overflow: hidden;
+
+      
+      
+      
+      
+      
+    }
+    #bg1{
+      width: 4000px;
+      height: 4000px;
+      border-radius: 50%;
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+      background: conic-gradient(
+      
+      rgb(27, 37, 59) 60deg, 
+      rgb(255, 191, 73) 90deg,
+      rgb(170, 221, 250) 110deg, 
+      rgb(170, 221, 250) 240deg,
+      rgb(255, 191, 73) 270deg, 
+      rgb(27, 37, 59) 290deg
+
+      );
+      transform-origin: center;
+
+    }
+    #plant{
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+      transform-origin: center;
+    }
+    #sun{
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) ;
+      bottom: 0;
+      background-color: rgb(255, 223, 79);
+      box-shadow: 0 0 20px rgba(255, 223, 79, 0.5);
+      border:none;
+    }
+    #moon{
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+      top: 0;
+
+      box-shadow: inset 20px -20px white;
+      
+      
+    }
+    
+    
+    
+    #grass{
+      width: 1120px;
+      height: 800px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) ;
+      bottom: -105%;
+      background-color: rgb(104, 158, 59);
+      z-index: 3;
+    }
+    #clock{
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) ;
+      bottom: 30%;
+      
+      background: linear-gradient(to right top,rgba(211, 211, 211, 0.637) 0%,rgba(255, 255, 255, 0.63) 75%, rgba(170, 170, 170, 0.452) 100%);
+      
+      z-index: 15;
+
+      
+      
+      
+    
+    }
+
+    #hour{
+      width: 20%;
+      height: 2%;
+      position: absolute;
+      top: 50%;
+      transform-origin: right center;
+
+      background:linear-gradient(to right top,#aaa 0% ,white 25% ,rgb(105, 105, 105) 75% ,#aaa 100%);
+      border-radius: 200% 100% 100% 200%;
+      left: 30%;
+      transform: rotate(0deg);
+
+    }
+
+    #minute{
+
+      width: 30%;
+      height: 3%;
+      position: absolute;
+      background:linear-gradient(to right top,#aaa 0% ,white 25% ,rgb(105, 105, 105) 75% ,#aaa 100%);
+      top: 50%;
+      transform-origin: right center;
+      border-radius: 200% 100% 100% 200%;
+      left: 20%;
+      transform: rotate(0deg);
+
+    }
+    #second{
+      background-color: rgb(85, 84, 84);
+      width: 40%;
+      height: 1%;
+      position: absolute;
+      top: 50%;
+      transform-origin: right center;
+      left: 10%;
+      border-radius: 200% 100% 100% 200%;
+      transform: rotate(0deg);
+
+
+    }
+    #cir{
+
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background:linear-gradient(to right top,#aaa 0% ,white 25% ,rgb(105, 105, 105) 75% ,#aaa 100%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 16;
+      
+    }
+
+    
+    #gear1{
+      width: 30%;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      transform: rotate(0deg)
+      
+    }
+    #gear2{
+      width: 40%;
+      position: absolute;
+      top: 20%;
+      left: 45%;
+      transform: rotate(0deg)
+      
+    }
+    #gear3{
+      width: 30%;
+      position: absolute;
+      bottom: 20%;
+      right: 40%;
+      transform: rotate(0deg)
+      
+    }
+    #bg2{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      z-index: 3;
+      
+    }
+
+    .sky{
+      width: 110%;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+
+      z-index: 2;
+    }
+    .cloud{
+
+      width: 200px;
+      position: absolute;
+      left: -30%;
+      transition-timing-function: ease-in;
+
+    }
+
+    .cloud1{
+
+      animation: cloudmove  40s infinite;
+    }
+
+    .cloud2{
+      top: 10%;
+
+      animation: cloudmove 50s 13s infinite;
+    }
+    .cloud3{
+      top: 20%;
+
+      animation: cloudmove 50s 21s infinite;
+    }
+    .cloud4{
+      top: 18%;
+      animation: cloudmove 40s 17s infinite;
+    }
+    .cloud5{
+      top: 15%;
+      animation: cloudmove 50s 4s infinite;
+    }
+    .cloud6{
+      top: 5%;
+      animation: cloudmove 40s 12s infinite;
+    }
+    .cloud7{
+      top: 12%;
+      animation: cloudmove 50s 14s infinite;
+    }
+      .cloud8{
+
+      animation: cloudmove  40s 24s infinite;
+    }
+
+  .cloud9{
+      top: 14%;
+      animation: cloudmove 40s 21s infinite;
+    }
+  .cloud10{
+      top: 17%;
+      animation: cloudmove 50s 30s infinite;
+    }
+  .cloud11{
+      top: 20%;
+      animation: cloudmove 40s 33s infinite;
+    }
+  .cloud12{
+      top: 21%;
+      animation: cloudmove 50s 37s  infinite;
+    }
+  .cloud13{
+      top: 16%;
+      animation: cloudmove 40s 26s infinite;
+    }
+  .cloud14{
+      top: 11%;
+      animation: cloudmove 50s 28s infinite;
+    }
+
+    @keyframes cloudmove{
+      0%{
+        opacity: 0;
+        transform:translateX(1200px);
+      }
+      15%{
+        opacity: 1;
+      }
+      30%{
+        opacity: 1;
+      }
+      50%{
+        opacity: 0;
+      }
+      100%{
+
+        transform:translateX(-300px);
+      }
+    }
+
+
+
+    
+
+    
+    
+  </style>
+</head>
+<body>
+  <div id="card">
+    
+    <div id="bg1">
+      
+    </div>
+    <div class="sky">
+      <div class="cloud1 cloud"><img src="./cloud/cloud1.svg" alt=""></div>
+      <div class="cloud2 cloud"><img src="./cloud/cloud2-01.svg" alt=""></div>
+      <div class="cloud3 cloud"><img src="./cloud/cloud3-01.svg" alt=""></div>
+      <div class="cloud4 cloud"><img src="./cloud/cloud4-01.svg" alt=""></div>
+      <div class="cloud5 cloud"><img src="./cloud/cloud5-01.svg" alt=""></div>
+      <div class="cloud6 cloud"><img src="./cloud/cloud6-01.svg" alt=""></div>
+      <div class="cloud7 cloud"><img src="./cloud/cloud7-01.svg" alt=""></div>
+      <div class="cloud8 cloud"><img src="./cloud/cloud1.svg" alt=""></div>
+      <div class="cloud9 cloud"><img src="./cloud/cloud2-01.svg" alt=""></div>
+      <div class="cloud10 cloud"><img src="./cloud/cloud3-01.svg" alt=""></div>
+      <div class="cloud11 cloud"><img src="./cloud/cloud4-01.svg" alt=""></div>
+      <div class="cloud12 cloud"><img src="./cloud/cloud5-01.svg" alt=""></div>
+      <div class="cloud13 cloud"><img src="./cloud/cloud6-01.svg" alt=""></div>
+      <div class="cloud14 cloud"><img src="./cloud/cloud7-01.svg" alt=""></div>
+    </div>
+    <div id="clock">
+      <div id="cir"></div>
+      <img id = "bg2" src="./img/clockkk_工作區域 1.png" alt="">
+      <img id="gear1"  src="./img/gear1_工作區域 1.png" alt="">
+      <img id="gear2"  src="./img/gear2_工作區域 1.png" alt="">
+      <img id="gear3"  src="./img/gear3_工作區域 1.png" alt="">
+      
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second"></div>
+      
+      
+      
+    </div>
+    
+    <div id="plant">
+      <div id="sun"></div>
+      <div id="moon">
+        
+      </div>
+
+    </div>
+    <div id="grass"></div>
+    
+</div>
+<script>
+  const hour = document.getElementById("hour")
+  const minute = document.getElementById("minute")
+  const sec = document.getElementById("second")
+  const gear1 = document.getElementById("gear1")
+  const gear2 = document.getElementById("gear2")
+  const gear3 = document.getElementById("gear3")
+  const bg2 = document.getElementById("bg2")
+  const plant = document.getElementById("plant")
+  const moon = document.getElementById("moon")
+  
+
+
+  
+  
+  
+  const setDate = () => {
+      let a = new Date()
+      let h = a.getHours()
+      let m = a.getMinutes()
+      let s = a.getSeconds()
+      
+      hour.style.transform = `rotate( ${h*30+90}deg )`
+      minute.style.transform = `rotate( ${m*6+90}deg )`
+      sec.style.transform = `rotate( ${s*6+90}deg )`
+      gear1.style.transform = `rotate( ${s*6+90}deg )`
+      gear2.style.transform = `rotate( -${s*6+90}deg )`
+      gear3.style.transform = `rotate( ${s*6+90}deg )`
+      plant.style.transform = `translateX(-50%) rotate(-${(h*60+m)*0.25}deg)`
+      bg1.style.transform = `translateX(-50%) rotate(-${(h*60+m)*0.25}deg)`
+  }
+  
+  setInterval(setDate, 1000)
+  setDate()
+</script>
+</body>
+</html>
